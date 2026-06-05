@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kwicker AI — Turn WhatsApp Into Your Best Salesperson</title>
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --green:   #00df82;
+      --dark:    #2b2b2b;
+      --darker:  #1a1a1a;
+      --white:   #ffffff;
+      --grey:    #f5f5f5;
+      --muted:   #6b7280;
+      --radius:  12px;
+      --font:    'Inter', sans-serif;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark); background: var(--white); line-height: 1.6; }
+    img  { max-width: 100%; display: block; }
+    a    { text-decoration: none; color: inherit; }
+
+    /* ─── UTILITIES ──────────────────────────────────────── */
+    .container   { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section     { padding: 96px 0; }
+    .section--grey { background: var(--grey); }
+    .section--dark { background: var(--darker); color: var(--white); }
+    .tag         { display: inline-block; background: rgba(0,223,130,0.12); color: #00a863;
+                   font-size: 13px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase;
+                   padding: 6px 14px; border-radius: 100px; margin-bottom: 16px; }
+    .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .section-sub   { font-size: 18px; color: var(--muted); max-width: 560px; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header .section-sub { margin: 0 auto; }
+    .btn         { display: inline-block; padding: 14px 30px; border-radius: var(--radius);
+                   font-size: 16px; font-weight: 700; cursor: pointer; transition: all .2s; }
+    .btn--primary { background: var(--green); color: var(--dark); }
+    .btn--primary:hover { filter: brightness(0.92); transform: translateY(-1px); }
+    .btn--outline { border: 2px solid var(--green); color: var(--green); }
+    .btn--outline:hover { background: var(--green); color: var(--dark); }
+    .btn--white   { background: var(--white); color: var(--dark); }
+    .btn--white:hover { filter: brightness(0.94); }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0 24px; height: 68px;
+      display: flex; align-items: center;
+    }
+    .nav-inner   { max-width: 1140px; width: 100%; margin: 0 auto;
+                   display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo    { font-size: 22px; font-weight: 800; }
+    .nav-logo span { color: var(--green); }
+    .nav-links   { display: flex; gap: 32px; font-size: 15px; font-weight: 500; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta     { font-size: 14px; padding: 10px 22px; }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      padding: 100px 0 80px;
+      background: linear-gradient(135deg, #f0fdf8 0%, #ffffff 60%);
+    }
+    .hero-inner  { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-eyebrow { font-size: 14px; font-weight: 600; color: #00a863; letter-spacing: .5px;
+                    text-transform: uppercase; margin-bottom: 16px; }
+    .hero-title  { font-size: clamp(36px, 5vw, 58px); font-weight: 900; line-height: 1.1;
+                   margin-bottom: 24px; }
+    .hero-title span { color: var(--green); }
+    .hero-sub    { font-size: 18px; color: var(--muted); margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .hero-note   { font-size: 13px; color: var(--muted); margin-top: 16px; }
+    .hero-img    { border-radius: 16px; box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+                   border: 1px solid #e5e7eb; background: #f9fafb;
+                   aspect-ratio: 9/16; max-height: 520px; object-fit: cover; }
+    .hero-img-placeholder {
+      border-radius: 16px; box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+      border: 1px solid #e5e7eb; background: linear-gradient(135deg, #f0fdf8, #e8f5e9);
+      aspect-ratio: 9/16; max-height: 520px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: var(--muted); font-size: 14px; padding: 32px; text-align: center;
+    }
+    .hero-img-placeholder .icon { font-size: 48px; }
+
+    /* ─── TRUST BAR ──────────────────────────────────────── */
+    .trust-bar   { padding: 24px 0; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; }
+    .trust-inner { display: flex; align-items: center; justify-content: center;
+                   gap: 12px; flex-wrap: wrap; font-size: 14px; color: var(--muted); font-weight: 500; }
+    .trust-dot   { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+
+    /* ─── PROBLEM ────────────────────────────────────────── */
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 16px; }
+    .problem-card { background: var(--white); border: 1px solid #e5e7eb; border-radius: var(--radius);
+                    padding: 28px; }
+    .problem-card .emoji { font-size: 32px; margin-bottom: 16px; }
+    .problem-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .problem-card p  { font-size: 15px; color: var(--muted); }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────── */
+    .steps-grid  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .step        { text-align: center; padding: 32px 24px; }
+    .step-num    { width: 52px; height: 52px; border-radius: 50%; background: var(--green);
+                   color: var(--dark); font-size: 20px; font-weight: 800;
+                   display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+    .step h3     { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+    .step p      { font-size: 15px; color: var(--muted); }
+    .steps-connector { display: flex; align-items: flex-start; justify-content: center;
+                       gap: 0; position: relative; }
+
+    /* ─── FEATURES ───────────────────────────────────────── */
+    .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .feature-card  { background: var(--white); border: 1px solid #e5e7eb;
+                     border-radius: var(--radius); padding: 32px; }
+    .feature-card.highlight { border-color: var(--green); background: #f0fdf8; }
+    .feature-icon  { font-size: 36px; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+    .feature-card p  { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── BEFORE / AFTER STATS ───────────────────────────── */
+    .stats-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .stats-col h3 { font-size: 15px; font-weight: 700; letter-spacing: .5px;
+                    text-transform: uppercase; margin-bottom: 24px; }
+    .stats-col.before h3 { color: #ef4444; }
+    .stats-col.after  h3 { color: var(--green); }
+    .stat-row    { display: flex; align-items: flex-start; gap: 16px;
+                   padding: 20px; border-radius: var(--radius); margin-bottom: 12px; }
+    .stats-col.before .stat-row { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.1); }
+    .stats-col.after  .stat-row { background: rgba(0,223,130,0.06); border: 1px solid rgba(0,223,130,0.15); }
+    .stat-icon   { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .stat-row h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .stat-row p  { font-size: 14px; color: var(--muted); }
+    .stats-col.after .stat-row p { color: #374151; }
+
+    /* ─── DEMO ───────────────────────────────────────────── */
+    .demo-inner  { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .demo-text .section-sub { margin-top: 16px; margin-bottom: 32px; }
+    .demo-checks { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .demo-checks li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; }
+    .demo-checks li::before { content: "✓"; color: var(--green); font-weight: 800;
+                               background: rgba(0,223,130,0.12); width: 22px; height: 22px;
+                               border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                               font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+    .demo-screenshot { border-radius: 16px; box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+                       border: 1px solid #e5e7eb; }
+    .demo-placeholder { border-radius: 16px; border: 2px dashed #d1d5db; background: var(--grey);
+                        height: 380px; display: flex; flex-direction: column;
+                        align-items: center; justify-content: center;
+                        gap: 12px; color: var(--muted); font-size: 14px; text-align: center; padding: 32px; }
+
+    /* ─── PRICING ────────────────────────────────────────── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .pricing-card { border: 1px solid #e5e7eb; border-radius: 16px; padding: 36px 28px;
+                    background: var(--white); position: relative; }
+    .pricing-card.popular { border-color: var(--green); border-width: 2px; }
+    .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+                     background: var(--green); color: var(--dark); font-size: 12px;
+                     font-weight: 700; padding: 4px 16px; border-radius: 100px;
+                     letter-spacing: .4px; text-transform: uppercase; white-space: nowrap; }
+    .plan-name   { font-size: 14px; font-weight: 700; text-transform: uppercase;
+                   letter-spacing: .5px; color: var(--muted); margin-bottom: 8px; }
+    .plan-price  { font-size: 44px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+    .plan-price span { font-size: 18px; font-weight: 600; color: var(--muted); }
+    .plan-convos { font-size: 14px; color: var(--muted); margin-bottom: 28px;
+                   padding-bottom: 24px; border-bottom: 1px solid #e5e7eb; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px;
+                     margin-bottom: 32px; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; }
+    .plan-features li::before { content: "✓"; color: var(--green); font-weight: 800;
+                                 flex-shrink: 0; margin-top: 1px; }
+    .plan-features li.muted { color: var(--muted); }
+    .plan-features li.muted::before { content: "–"; color: #d1d5db; }
+    .plan-btn    { display: block; text-align: center; width: 100%;
+                   padding: 14px; border-radius: var(--radius); font-size: 15px; font-weight: 700;
+                   border: 2px solid var(--green); color: var(--dark); cursor: pointer;
+                   transition: all .2s; }
+    .pricing-card.popular .plan-btn { background: var(--green); }
+    .plan-btn:hover { background: var(--green); }
+    .pricing-note { text-align: center; margin-top: 24px; font-size: 14px; color: var(--muted); }
+
+    /* ─── FAQ ────────────────────────────────────────────── */
+    .faq-list    { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+    .faq-item    { border-bottom: 1px solid #e5e7eb; padding: 24px 0; }
+    .faq-item:first-child { border-top: 1px solid #e5e7eb; }
+    .faq-q       { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .faq-a       { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── CTA BAND ───────────────────────────────────────── */
+    .cta-band    { text-align: center; padding: 96px 24px;
+                   background: linear-gradient(135deg, var(--darker) 0%, #1e3a2e 100%); }
+    .cta-band .section-title { color: var(--white); margin-bottom: 16px; }
+    .cta-band .section-sub   { color: #9ca3af; margin: 0 auto 36px; }
+    .cta-band .btn { font-size: 17px; padding: 16px 36px; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer       { background: var(--darker); color: #9ca3af; padding: 48px 24px 28px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; }
+    .footer-top  { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+                   padding-bottom: 40px; border-bottom: 1px solid #374151; margin-bottom: 28px; }
+    .footer-brand h3 { font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+    .footer-brand h3 span { color: var(--green); }
+    .footer-brand p  { font-size: 14px; line-height: 1.7; max-width: 240px; }
+    .footer-col h4   { font-size: 13px; font-weight: 700; color: var(--white);
+                       text-transform: uppercase; letter-spacing: .5px; margin-bottom: 16px; }
+    .footer-col ul   { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 14px; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--green); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center;
+                     font-size: 13px; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom a { color: #9ca3af; }
+    .footer-bottom a:hover { color: var(--green); }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#"><img src="assets/kwicker-logo-header.png" alt="Kwicker AI" style="height:36px; width:auto;" /></a>
+    <div class="nav-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <!-- REPLACE: update href to your actual Calendly link -->
+    <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary nav-cta">Book a Demo</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">WhatsApp AI Sales Assistant</p>
+        <h1 class="hero-title">
+          Never Miss a Lead.<br />
+          <span>Never Lose a Sale.</span>
+        </h1>
+        <p class="hero-sub">
+          Kwicker AI turns your WhatsApp number into a 24/7 sales machine — qualifying leads, sending follow-ups, and closing deals automatically. No staff needed.
+        </p>
+        <div class="hero-actions">
+          <!-- REPLACE: update href to your actual Calendly link -->
+          <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary">Book a Free Demo →</a>
+          <a href="#how-it-works" class="btn btn--outline">See How It Works</a>
+        </div>
+        <p class="hero-note">No credit card required &nbsp;·&nbsp; Setup in under 24 hours</p>
+      </div>
+      <div>
+        <img src="assets/Hero screenshot.jpg" alt="Kwicker AI conversation in action" class="hero-img" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TRUST BAR
+═══════════════════════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-inner">
+      <span>✅ Powered by Claude AI</span>
+      <div class="trust-dot"></div>
+      <span>💬 WhatsApp Business Cloud API</span>
+      <div class="trust-dot"></div>
+      <span>🔒 End-to-end secure</span>
+      <div class="trust-dot"></div>
+      <span>⚡ Responds in under 3 seconds</span>
+      <div class="trust-dot"></div>
+      <span>🌍 Works in any language</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PROBLEM SECTION
+═══════════════════════════════════════════════════════ -->
+<section class="section section--grey">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Sound familiar?</span>
+      <h2 class="section-title">You're losing sales without even knowing it</h2>
+      <p class="section-sub">Every unanswered WhatsApp message is a potential customer walking out the door.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="emoji">😓</div>
+        <h3>Customers message at midnight</h3>
+        <p>By the time you reply in the morning, they've already bought from someone else.</p>
+      </div>
+      <div class="problem-card">
+        <div class="emoji">📵</div>
+        <h3>Follow-ups slip through the cracks</h3>
+        <p>You meant to follow up on that lead from Tuesday. But you got busy. Now they're gone.</p>
+      </div>
+      <div class="problem-card">
+        <div class="emoji">🔁</div>
+        <h3>You answer the same questions over and over</h3>
+        <p>Price? Available? How to order? Your time is worth more than copy-pasting replies all day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Simple Setup</span>
+      <h2 class="section-title">Up and running in 3 steps</h2>
+      <p class="section-sub">No technical skills needed. We handle everything. You just watch the leads come in.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Connect your WhatsApp number</h3>
+        <p>We register your existing business WhatsApp number with Kwicker AI. Takes less than 24 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Tell the AI about your business</h3>
+        <p>Add your products, pricing, tone of voice, and any instructions. The AI learns your business instantly.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Watch it sell for you</h3>
+        <p>Every customer message gets an instant, intelligent reply. Follow-ups happen automatically. You see everything in your dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FEATURES
+═══════════════════════════════════════════════════════ -->
+<section class="section section--grey" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Features</span>
+      <h2 class="section-title">Everything your sales team should be doing</h2>
+      <p class="section-sub">Kwicker AI handles the full sales conversation — from first message to closed deal.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card highlight">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant AI Replies — 24/7</h3>
+        <p>Every customer message gets a smart, personalised reply in under 3 seconds. Day or night, weekend or holiday — your business never goes silent.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔁</div>
+        <h3>Automated Follow-Up Sequence</h3>
+        <p>If a customer goes quiet, Kwicker AI follows up automatically — a personalised message at 1 hour, again at 22 hours, and a final check before marking the lead cold. Nothing falls through the cracks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Live Lead Pipeline Dashboard</h3>
+        <p>See every lead — new, warm, hot, or cold — in a real-time CRM built for WhatsApp. Know exactly who needs attention without digging through chats.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🖼️</div>
+        <h3>Images & Voice Notes Supported</h3>
+        <p>Customers can send photos of what they want or voice notes describing their needs. The AI reads images and transcribes voice messages — and still replies intelligently.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛍️</div>
+        <h3>Full Product Catalog Awareness</h3>
+        <p>Add your products, prices, and availability. The AI answers catalog questions with 100% accuracy — no more "let me check and get back to you."</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>Human Takeover, Anytime</h3>
+        <p>Pause the AI on any conversation and take over manually from the app. Hand it back when you're done. Full flexibility — no lock-in to the bot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     BEFORE / AFTER STATS
+═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">The Difference</span>
+      <h2 class="section-title">Before Kwicker vs. After Kwicker</h2>
+      <p class="section-sub">This is what changes when your business never sleeps.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stats-col before">
+        <h3>❌ Before Kwicker</h3>
+        <div class="stat-row">
+          <div class="stat-icon">🐢</div>
+          <div>
+            <h4>Replies take hours</h4>
+            <p>Customers wait 2–6 hours for a response — and most move on by then.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">🙈</div>
+          <div>
+            <h4>Follow-ups forgotten</h4>
+            <p>Warm leads go cold because you're too busy to remember to follow up.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">😴</div>
+          <div>
+            <h4>Dead after hours</h4>
+            <p>Any inquiry that comes in outside business hours is essentially lost.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">🤷</div>
+          <div>
+            <h4>No visibility on leads</h4>
+            <p>You have no idea which customers are hot, which are cold, or who to prioritise.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stats-col after">
+        <h3>✅ After Kwicker</h3>
+        <div class="stat-row">
+          <div class="stat-icon">⚡</div>
+          <div>
+            <h4>Replies in under 3 seconds</h4>
+            <p>Every message answered instantly, with context and personality. Always.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">🎯</div>
+          <div>
+            <h4>Automated follow-up sequence</h4>
+            <p>3-touch AI follow-up runs on its own. No reminders, no manual work.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">🌙</div>
+          <div>
+            <h4>24/7, 365 days a year</h4>
+            <p>Midnight. 3am. Sunday. Public holiday. Your business keeps selling.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">📈</div>
+          <div>
+            <h4>Full pipeline visibility</h4>
+            <p>Every lead scored, staged, and tracked. Know exactly who's ready to buy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     DEMO SECTION
+═══════════════════════════════════════════════════════ -->
+<section class="section section--grey" id="demo">
+  <div class="container">
+    <div class="demo-inner">
+      <div class="demo-text">
+        <span class="tag">See It In Action</span>
+        <h2 class="section-title">This is what your customers experience</h2>
+        <p class="section-sub">A real conversation — product questions answered, buying intent detected, follow-up sent automatically.</p>
+        <ul class="demo-checks">
+          <li>Customer asks about a product — AI replies with price, availability and options</li>
+          <li>Customer goes quiet — AI sends a personalised follow-up 1 hour later</li>
+          <li>Order details collected — merchant gets notified instantly</li>
+          <li>Merchant reviews everything from the CRM dashboard</li>
+        </ul>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary">Book a Demo to See It Live →</a>
+      </div>
+      <div>
+        <img src="assets/CRM screenshot-dashboard.jpg" alt="Kwicker AI CRM Dashboard" class="demo-screenshot" style="border-radius:16px; box-shadow: 0 24px 64px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Pricing</span>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-sub">One flat monthly fee. No per-message charges. No hidden costs. Cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- STARTER -->
+      <div class="pricing-card">
+        <p class="plan-name">Starter</p>
+        <p class="plan-price">AED 199<span>/mo</span></p>
+        <p class="plan-convos">Up to 250 customer conversations/month</p>
+        <ul class="plan-features">
+          <li>AI replies 24/7</li>
+          <li>Automated follow-up sequence</li>
+          <li>Lead pipeline dashboard</li>
+          <li>Product catalog (up to 20 items)</li>
+          <li>Human takeover mode</li>
+          <li class="muted">Voice message support</li>
+          <li class="muted">Priority support</li>
+        </ul>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
+      </div>
+
+      <!-- GROWTH (POPULAR) -->
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <p class="plan-name">Growth</p>
+        <p class="plan-price">AED 349<span>/mo</span></p>
+        <p class="plan-convos">Up to 500 customer conversations/month</p>
+        <ul class="plan-features">
+          <li>Everything in Starter</li>
+          <li>Voice message support</li>
+          <li>Image recognition</li>
+          <li>Unlimited catalog items</li>
+          <li>Hot lead push notifications</li>
+          <li>Priority support</li>
+        </ul>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="pricing-card">
+        <p class="plan-name">Pro</p>
+        <p class="plan-price">AED 599<span>/mo</span></p>
+        <p class="plan-convos">Up to 1,000 customer conversations/month</p>
+        <ul class="plan-features">
+          <li>Everything in Growth</li>
+          <li>Multiple staff accounts</li>
+          <li>Weekly performance reports</li>
+          <li>Custom AI tone & persona</li>
+          <li>Dedicated onboarding support</li>
+          <li>SLA response guarantee</li>
+        </ul>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
+      </div>
+
+    </div>
+    <p class="pricing-note">All plans include a 7-day free trial &nbsp;·&nbsp; No setup fee &nbsp;·&nbsp; Cancel anytime</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     MID-PAGE CTA BAND
+═══════════════════════════════════════════════════════ -->
+<div class="cta-band">
+  <h2 class="section-title">Your next customer is already typing on WhatsApp.</h2>
+  <p class="section-sub">Are you going to reply in 4 hours — or in 3 seconds?</p>
+  <!-- REPLACE: update href to your actual Calendly link -->
+  <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--white">Book a Free Demo →</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════════════ -->
+<section class="section section--grey" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">FAQ</span>
+      <h2 class="section-title">Questions? We've got answers.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-q">Do I need to change my WhatsApp number?</p>
+        <p class="faq-a">No. We connect Kwicker AI to your existing business WhatsApp number. Your customers keep messaging the same number they already know.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Will customers know they're talking to an AI?</p>
+        <p class="faq-a">The AI is trained to match your brand's tone and personality. Most customers can't tell the difference. And if you ever want to step in personally, you can pause the AI and take over the conversation at any time.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What languages does it support?</p>
+        <p class="faq-a">Kwicker AI works in any language — English, Arabic, Hindi, and more. It automatically matches whatever language the customer is writing in.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How long does setup take?</p>
+        <p class="faq-a">Most businesses are fully set up and live within 24 hours. We handle the technical side — you just tell us about your business, products, and how you like to communicate.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What counts as a "conversation"?</p>
+        <p class="faq-a">A conversation is a 24-hour window of messaging with one customer. Whether you exchange 3 messages or 30, it counts as one conversation. Follow-up messages sent within the same 24-hour window are included.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I change the AI's responses or train it?</p>
+        <p class="faq-a">Yes. You can update your product catalog, pricing, AI instructions, and tone anytime from the dashboard. Changes take effect immediately.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What if I go over my conversation limit?</p>
+        <p class="faq-a">We'll notify you before you hit your limit. You can upgrade your plan at any time — or we can discuss a custom plan that fits your volume.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Is there a contract or lock-in?</p>
+        <p class="faq-a">No contracts. No lock-in. Monthly billing, cancel anytime. We'd rather earn your business every month than trap you into a contract.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FINAL CTA BAND
+═══════════════════════════════════════════════════════ -->
+<div class="cta-band">
+  <h2 class="section-title">Ready to turn WhatsApp into your best salesperson?</h2>
+  <p class="section-sub">Book a free demo and see Kwicker AI reply to a real customer inquiry — live, in front of you.</p>
+  <!-- REPLACE: update href to your actual Calendly link -->
+  <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary" style="margin-right:12px">Book a Free Demo →</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/kwicker-logo-footer.png" alt="Kwicker AI" style="height:40px; width:auto; margin-bottom:12px;" />
+        <p>WhatsApp AI that qualifies leads, follows up, and closes sales — automatically.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#demo">Demo</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <!-- REPLACE: add real links when pages exist -->
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <!-- REPLACE: update to your actual privacy policy URL -->
+          <li><a href="https://ashiq6921.github.io/kwicker-privacy/">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Kwicker AI. All rights reserved.</span>
+      <!-- REPLACE: add real social links -->
+      <span>
+        <a href="#" style="margin-right:16px">Instagram</a>
+        <a href="#" style="margin-right:16px">LinkedIn</a>
+        <a href="#">WhatsApp</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
