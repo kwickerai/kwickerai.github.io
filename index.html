@@ -221,6 +221,54 @@
                      font-size: 13px; flex-wrap: wrap; gap: 12px; }
     .footer-bottom a { color: #9ca3af; }
     .footer-bottom a:hover { color: var(--green); }
+
+    /* ─── MOBILE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+
+      /* Nav */
+      .nav-links { display: none; }
+      .nav-cta   { font-size: 13px; padding: 9px 16px; }
+
+      /* Hero */
+      .hero { padding: 64px 0 48px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-inner > div:last-child { display: flex; justify-content: center; }
+      .hero-img { max-height: 380px; }
+
+      /* Problem */
+      .problem-grid { grid-template-columns: 1fr; }
+
+      /* Steps */
+      .steps-grid { grid-template-columns: 1fr; gap: 24px; }
+
+      /* Features */
+      .features-grid { grid-template-columns: 1fr; }
+
+      /* Stats */
+      .stats-grid { grid-template-columns: 1fr; }
+
+      /* Demo */
+      .demo-inner { grid-template-columns: 1fr; gap: 36px; }
+      .demo-inner > div:last-child { display: flex; justify-content: center; }
+
+      /* Pricing */
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+      /* Section headers */
+      .section-sub { font-size: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { text-align: center; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -239,8 +287,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </div>
-    <!-- REPLACE: update href to your actual Calendly link -->
-    <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary nav-cta">Book a Demo</a>
+    <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary nav-cta">Book a Demo</a>
   </div>
 </nav>
 
@@ -261,8 +308,7 @@
           Kwicker AI turns your WhatsApp number into a 24/7 sales machine. It qualifies leads, sends personalised follow-ups, and closes deals automatically. No extra staff, no missed messages, no lost revenue.
         </p>
         <div class="hero-actions">
-          <!-- REPLACE: update href to your actual Calendly link -->
-          <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary">Book a Free Demo →</a>
+          <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary">Book a Free Demo →</a>
           <a href="#how-it-works" class="btn btn--outline">See How It Works</a>
         </div>
         <p class="hero-note">No credit card required &nbsp;·&nbsp; Setup in under 24 hours</p>
@@ -497,8 +543,7 @@
           <li>Order details collected. Merchant gets notified instantly</li>
           <li>Merchant reviews everything from the CRM dashboard</li>
         </ul>
-        <!-- REPLACE: update href to your actual Calendly link -->
-        <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary">Book a Demo to See It Live →</a>
+        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary">Book a Demo to See It Live →</a>
       </div>
       <div>
         <img src="assets/CRM screenshot-dashboard.jpg" alt="Kwicker AI CRM Dashboard" class="demo-screenshot" style="border-radius:16px; box-shadow: 0 24px 64px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; max-height: 480px; width: auto; margin: 0 auto;" />
@@ -524,8 +569,9 @@
       <div class="pricing-card">
         <p class="plan-name">Starter</p>
         <p class="plan-price">AED 199<span>/mo</span></p>
+        <p class="plan-convos">Up to 250 conversations / month</p>
         <ul class="plan-features">
-          <li>Up to 250 conversations/mo</li>
+          <li>AI replies 24/7</li>
           <li>AI replies 24/7</li>
           <li>Automated follow-up sequence</li>
           <li>Lead pipeline dashboard</li>
@@ -534,8 +580,7 @@
           <li class="muted">Voice message support</li>
           <li class="muted">Priority support</li>
         </ul>
-        <!-- REPLACE: update href to your actual Calendly link -->
-        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
+        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="plan-btn">Get Started</a>
       </div>
 
       <!-- GROWTH (POPULAR) -->
@@ -543,8 +588,8 @@
         <div class="popular-badge">Most Popular</div>
         <p class="plan-name">Growth</p>
         <p class="plan-price">AED 349<span>/mo</span></p>
+        <p class="plan-convos">Up to 500 conversations / month</p>
         <ul class="plan-features">
-          <li>Up to 500 conversations/mo</li>
           <li>Everything in Starter</li>
           <li>Voice message support</li>
           <li>Image recognition</li>
@@ -552,16 +597,15 @@
           <li>Hot lead push notifications</li>
           <li>Priority support</li>
         </ul>
-        <!-- REPLACE: update href to your actual Calendly link -->
-        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
+        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="plan-btn">Get Started</a>
       </div>
 
       <!-- PRO -->
       <div class="pricing-card">
         <p class="plan-name">Pro</p>
         <p class="plan-price">AED 599<span>/mo</span></p>
+        <p class="plan-convos">Up to 1,000 conversations / month</p>
         <ul class="plan-features">
-          <li>Up to 1,000 conversations/mo</li>
           <li>Everything in Growth</li>
           <li>Multiple staff accounts</li>
           <li>Weekly performance reports</li>
@@ -569,8 +613,7 @@
           <li>Dedicated onboarding support</li>
           <li>Guaranteed support response time</li>
         </ul>
-        <!-- REPLACE: update href to your actual Calendly link -->
-        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
+        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="plan-btn">Get Started</a>
       </div>
 
     </div>
@@ -585,8 +628,7 @@
 <div class="cta-band">
   <h2 class="section-title">Your next customer is already typing on WhatsApp.</h2>
   <p class="section-sub">Are you going to reply in 4 hours, or in 3 seconds?</p>
-  <!-- REPLACE: update href to your actual Calendly link -->
-  <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--white">Book a Free Demo →</a>
+  <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--white">Book a Free Demo →</a>
 </div>
 
 
@@ -643,8 +685,7 @@
 <div class="cta-band">
   <h2 class="section-title">Ready to turn WhatsApp into your best salesperson?</h2>
   <p class="section-sub">Book a free demo and see Kwicker AI reply to a real customer inquiry, live, in front of you.</p>
-  <!-- REPLACE: update href to your actual Calendly link -->
-  <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary" style="margin-right:12px">Book a Free Demo →</a>
+  <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary" style="margin-right:12px">Book a Free Demo →</a>
 </div>
 
 
@@ -668,31 +709,22 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
+        <h4>Contact</h4>
         <ul>
-          <!-- REPLACE: add real links when pages exist -->
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener">Book a Demo</a></li>
+          <li><a href="mailto:kwickerai.info@gmail.com">Email Us</a></li>
+          <li><a href="https://wa.me/918891337705" target="_blank" rel="noopener">WhatsApp Us</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <!-- REPLACE: update to your actual privacy policy URL -->
-          <li><a href="https://ashiq6921.github.io/kwicker-privacy/">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+          <li><a href="https://ashiq6921.github.io/kwicker-privacy/" target="_blank" rel="noopener">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Kwicker AI. All rights reserved.</span>
-      <!-- REPLACE: add real social links -->
-      <span>
-        <a href="#" style="margin-right:16px">Instagram</a>
-        <a href="#" style="margin-right:16px">LinkedIn</a>
-        <a href="#">WhatsApp</a>
-      </span>
     </div>
   </div>
 </footer>
