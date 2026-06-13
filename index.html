@@ -221,57 +221,7 @@
                      font-size: 13px; flex-wrap: wrap; gap: 12px; }
     .footer-bottom a { color: #9ca3af; }
     .footer-bottom a:hover { color: var(--green); }
-
-    /* ─── MOBILE ─────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .section { padding: 64px 0; }
-
-      /* Nav */
-      .nav-links { display: none; }
-      .nav-cta   { font-size: 13px; padding: 9px 16px; }
-
-      /* Hero */
-      .hero { padding: 64px 0 48px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
-      .hero-inner > div:last-child { display: flex; justify-content: center; }
-      .hero-img { max-height: 380px; }
-
-      /* Problem */
-      .problem-grid { grid-template-columns: 1fr; }
-
-      /* Steps */
-      .steps-grid { grid-template-columns: 1fr; gap: 24px; }
-
-      /* Features */
-      .features-grid { grid-template-columns: 1fr; }
-
-      /* Stats */
-      .stats-grid { grid-template-columns: 1fr; }
-
-      /* Demo */
-      .demo-inner { grid-template-columns: 1fr; gap: 36px; }
-      .demo-inner > div:last-child { display: flex; justify-content: center; }
-
-      /* Pricing */
-      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-
-      /* Footer */
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .footer-brand { grid-column: 1 / -1; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-
-      /* Section headers */
-      .section-sub { font-size: 16px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-actions { flex-direction: column; align-items: stretch; }
-      .hero-actions .btn { text-align: center; }
-      .footer-top { grid-template-columns: 1fr; }
-    }
   </style>
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
@@ -289,7 +239,8 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary nav-cta">Book a Demo</a>
+    <!-- REPLACE: update href to your actual Calendly link -->
+    <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary nav-cta">Book a Demo</a>
   </div>
 </nav>
 
@@ -301,16 +252,17 @@
   <div class="container">
     <div class="hero-inner">
       <div class="hero-content">
-        <p class="hero-eyebrow">WhatsApp AI Sales Engine</p>
+        <p class="hero-eyebrow">WhatsApp Made Simple for Small Teams</p>
         <h1 class="hero-title">
-          Never Miss a Lead.<br />
-          <span>Never Lose a Sale.</span>
+          Every Inquiry Handled.<br />
+          <span>No Setup. No Flowcharts.</span>
         </h1>
         <p class="hero-sub">
-          Kwicker AI turns your WhatsApp number into a 24/7 sales machine. It qualifies leads, sends personalised follow-ups, and closes deals automatically. No extra staff, no missed messages, no lost revenue.
+          Kwicker connects to your existing WhatsApp number. Tell it about your business in plain language, and it handles every inquiry from there. No automation builder, no AI training, no technical person needed.
         </p>
         <div class="hero-actions">
-          <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary">Book a Free Demo →</a>
+          <!-- REPLACE: update href to your actual Calendly link -->
+          <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary">Book a Free Demo →</a>
           <a href="#how-it-works" class="btn btn--outline">See How It Works</a>
         </div>
         <p class="hero-note">No credit card required &nbsp;·&nbsp; Setup in under 24 hours</p>
@@ -329,13 +281,13 @@
 <div class="trust-bar">
   <div class="container">
     <div class="trust-inner">
-      <span>✅ Powered by Claude AI</span>
+      <span>✅ No flowcharts or setup</span>
       <div class="trust-dot"></div>
-      <span>💬 WhatsApp Business Cloud API</span>
+      <span>📱 Works on your existing WhatsApp number</span>
       <div class="trust-dot"></div>
-      <span>🔒 End-to-end secure</span>
+      <span>👥 Built for small teams</span>
       <div class="trust-dot"></div>
-      <span>⚡ Responds in under 3 seconds</span>
+      <span>🚀 Live in 24 hours</span>
       <div class="trust-dot"></div>
       <span>🌍 Works in any language</span>
     </div>
@@ -350,24 +302,24 @@
   <div class="container">
     <div class="section-header">
       <span class="tag">Sound familiar?</span>
-      <h2 class="section-title">You're losing sales without even knowing it</h2>
-      <p class="section-sub">Every unanswered WhatsApp message is a potential customer walking out the door.</p>
+      <h2 class="section-title">You don't need to be technical to fix this</h2>
+      <p class="section-sub">Most small teams know they have a WhatsApp problem. The tools that exist just make it harder.</p>
     </div>
     <div class="problem-grid">
       <div class="problem-card">
-        <div class="emoji">😓</div>
-        <h3>Customers message at midnight</h3>
-        <p>By the time you reply in the morning, they've already bought from someone else.</p>
+        <div class="emoji">📨</div>
+        <h3>Inquiries pile up faster than your team can handle</h3>
+        <p>A small team can only reply so fast. Customers don't wait, and the ones who don't hear back don't come back.</p>
       </div>
       <div class="problem-card">
-        <div class="emoji">📵</div>
-        <h3>Follow-ups slip through the cracks</h3>
-        <p>You meant to follow up on that lead from Tuesday. But you got busy. Now they're gone.</p>
+        <div class="emoji">⚙️</div>
+        <h3>The "advanced" tools require a tech team to run them</h3>
+        <p>Tools like AiSensy and Wati are powerful — but they need flow builders, AI prompt setup, and someone to maintain them. Most small business owners don't have that person.</p>
       </div>
       <div class="problem-card">
-        <div class="emoji">🔁</div>
-        <h3>You answer the same questions over and over</h3>
-        <p>Price? Available? How to order? Your time is worth more than copy-pasting replies all day.</p>
+        <div class="emoji">🤷</div>
+        <h3>No visibility into what's actually happening</h3>
+        <p>Your team is juggling 40 open chats with no way to see who's hot, who's been forgotten, and what needs a reply today.</p>
       </div>
     </div>
   </div>
@@ -381,24 +333,24 @@
   <div class="container">
     <div class="section-header">
       <span class="tag">Simple Setup</span>
-      <h2 class="section-title">Up and running in 3 steps</h2>
-      <p class="section-sub">No technical skills needed. We handle everything. You just watch the leads come in.</p>
+      <h2 class="section-title">No flows to build. No prompts to write.</h2>
+      <p class="section-sub">Getting started with Kwicker is like onboarding a new team member, not configuring software.</p>
     </div>
     <div class="steps-grid">
       <div class="step">
         <div class="step-num">1</div>
-        <h3>Connect your WhatsApp number</h3>
-        <p>We register your existing business WhatsApp number with Kwicker AI. Takes less than 24 hours.</p>
+        <h3>Connect your existing WhatsApp number</h3>
+        <p>We handle the technical setup. Your customers keep messaging the same number they already know. Takes less than 24 hours.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Tell the AI about your business</h3>
-        <p>Add your products, pricing, tone of voice, and any instructions. The AI learns your business instantly.</p>
+        <h3>Brief Kwicker like a new hire</h3>
+        <p>Tell it about your business in plain English. What you sell, how you price it, how you like to talk to customers. No flow builder, no AI prompt writing, no configuration screens.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Watch it sell for you</h3>
-        <p>Every customer message gets an instant, intelligent reply. Follow-ups happen automatically. You see everything in your dashboard.</p>
+        <h3>Your team focuses on closing, not triage</h3>
+        <p>Kwicker handles the incoming volume. Your team sees a clean pipeline, jumps in where needed, and spends time on customers who are ready to buy.</p>
       </div>
     </div>
   </div>
@@ -412,39 +364,39 @@
   <div class="container">
     <div class="section-header">
       <span class="tag">Features</span>
-      <h2 class="section-title">Everything your sales team should be doing</h2>
-      <p class="section-sub">Kwicker AI handles the full sales conversation, from first message to closed deal.</p>
+      <h2 class="section-title">Built for teams who sell, not teams who configure</h2>
+      <p class="section-sub">Everything your team needs to stay on top of WhatsApp inquiries, with nothing to build or maintain.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card highlight">
-        <div class="feature-icon">⚡</div>
-        <h3>Instant AI Replies, 24/7</h3>
-        <p>Every customer message gets a smart, personalised reply in under 3 seconds. Day or night, weekend or holiday, your business never goes silent.</p>
-      </div>
       <div class="feature-card">
-        <div class="feature-icon">🔁</div>
-        <h3>Automated Follow-Up Sequence</h3>
-        <p>If a customer goes quiet, Kwicker AI follows up automatically with a personalised message at 1 hour, again at 22 hours, and a final check before marking the lead cold. Nothing falls through the cracks.</p>
+        <div class="feature-icon">🧩</div>
+        <h3>No Automations to Build</h3>
+        <p>Other tools need you to map out conversation flows, write AI prompts, and test everything before it works. Kwicker doesn't. Describe your business in plain language and it handles the rest from day one.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📊</div>
-        <h3>Live Lead Pipeline Dashboard</h3>
-        <p>See every lead (new, warm, hot, or cold) in a real-time CRM built for WhatsApp. Know exactly who needs attention without digging through chats.</p>
+        <h3>See What's Happening Without Reading Every Chat</h3>
+        <p>Your dashboard shows every lead by status: new, hot, waiting, or cold. Your team knows exactly who to focus on, without digging through 40 open conversations.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🖼️</div>
-        <h3>Images & Voice Notes Supported</h3>
-        <p>Customers can send photos of what they want or voice notes describing their needs. The AI reads images and transcribes voice messages, and still replies intelligently.</p>
+        <div class="feature-icon">🔁</div>
+        <h3>Follow-Ups That Run Themselves</h3>
+        <p>When a customer goes quiet, Kwicker follows up on your behalf with a personalised message at 1 hour, again at 22 hours, and a final check before the lead goes cold. Nothing falls through.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>Your Team Steps In When It Matters</h3>
+        <p>Pause Kwicker on any conversation and take over manually. Hand it back when you're done. You're always in control — the tool works around your team, not the other way around.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🛍️</div>
         <h3>Full Product Catalog Awareness</h3>
-        <p>Add your products, prices, and availability. The AI answers catalog questions with 100% accuracy. No more "let me check and get back to you."</p>
+        <p>Add your products, prices, and availability once. Kwicker answers catalog questions accurately every time. No more "let me check and get back to you."</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🤝</div>
-        <h3>Human Takeover, Anytime</h3>
-        <p>Pause the AI on any conversation and take over manually from the app. Hand it back when you're done. Full flexibility, no lock-in to the bot.</p>
+        <div class="feature-icon">🖼️</div>
+        <h3>Images and Voice Notes, Handled</h3>
+        <p>Customers can send photos of what they want or voice notes describing their needs. Kwicker reads and transcribes them, and still replies with the right information.</p>
       </div>
     </div>
   </div>
@@ -459,68 +411,68 @@
     <div class="section-header">
       <span class="tag">The Difference</span>
       <h2 class="section-title">Before Kwicker vs. After Kwicker</h2>
-      <p class="section-sub">This is what changes when your business never sleeps.</p>
+      <p class="section-sub">This is what changes when your team stops doing triage and starts closing.</p>
     </div>
     <div class="stats-grid">
       <div class="stats-col before">
         <h3>❌ Before Kwicker</h3>
         <div class="stat-row">
-          <div class="stat-icon">🐢</div>
+          <div class="stat-icon">📨</div>
           <div>
-            <h4>Replies take hours</h4>
-            <p>Customers wait 2–6 hours for a response, and most move on by then.</p>
+            <h4>Inquiries pile up</h4>
+            <p>Your team is overwhelmed. Some get replies, some don't. Customers don't wait.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">⚙️</div>
+          <div>
+            <h4>Complex tools you can't actually maintain</h4>
+            <p>You set up AiSensy or Wati, spent days building flows, and still can't get it working consistently without a dedicated person.</p>
           </div>
         </div>
         <div class="stat-row">
           <div class="stat-icon">🙈</div>
           <div>
-            <h4>Follow-ups forgotten</h4>
-            <p>Warm leads go cold because you're too busy to remember to follow up.</p>
+            <h4>No one knows what's happening</h4>
+            <p>Leads are buried in WhatsApp chats. You don't know who's hot, who's been forgotten, or what needs attention today.</p>
           </div>
         </div>
         <div class="stat-row">
-          <div class="stat-icon">😴</div>
+          <div class="stat-icon">😓</div>
           <div>
-            <h4>Dead after hours</h4>
-            <p>Any inquiry that comes in outside business hours is essentially lost.</p>
-          </div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-icon">🤷</div>
-          <div>
-            <h4>No visibility on leads</h4>
-            <p>You have no idea which customers are hot, which are cold, or who to prioritise.</p>
+            <h4>Your team is doing chat triage, not selling</h4>
+            <p>Valuable selling time is spent copy-pasting replies, chasing follow-ups, and answering the same questions repeatedly.</p>
           </div>
         </div>
       </div>
       <div class="stats-col after">
         <h3>✅ After Kwicker</h3>
         <div class="stat-row">
-          <div class="stat-icon">⚡</div>
+          <div class="stat-icon">👥</div>
           <div>
-            <h4>Replies in under 3 seconds</h4>
-            <p>Every message answered instantly, with context and personality. Always.</p>
+            <h4>A team of 2 operates like a team of 5</h4>
+            <p>Kwicker handles the incoming volume. Your team focuses on conversations that are ready to close.</p>
           </div>
         </div>
         <div class="stat-row">
-          <div class="stat-icon">🎯</div>
+          <div class="stat-icon">🧩</div>
           <div>
-            <h4>Automated follow-up sequence</h4>
-            <p>3-touch AI follow-up runs on its own. No reminders, no manual work.</p>
-          </div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-icon">🌙</div>
-          <div>
-            <h4>24/7, 365 days a year</h4>
-            <p>Midnight. 3am. Sunday. Public holiday. Your business keeps selling.</p>
+            <h4>Set up in plain language, done in 24 hours</h4>
+            <p>No flows to build, no prompts to write, no ongoing maintenance. It works from day one and keeps working.</p>
           </div>
         </div>
         <div class="stat-row">
           <div class="stat-icon">📈</div>
           <div>
-            <h4>Full pipeline visibility</h4>
-            <p>Every lead scored, staged, and tracked. Know exactly who's ready to buy.</p>
+            <h4>Full visibility without reading every chat</h4>
+            <p>One dashboard. Every lead staged and tracked. Your team always knows who to call next.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon">🎯</div>
+          <div>
+            <h4>Follow-ups happen without reminders</h4>
+            <p>Kwicker follows up on quiet leads automatically. Nothing is forgotten, nothing falls through.</p>
           </div>
         </div>
       </div>
@@ -537,15 +489,16 @@
     <div class="demo-inner">
       <div class="demo-text">
         <span class="tag">See It In Action</span>
-        <h2 class="section-title">This is what your customers experience</h2>
-        <p class="section-sub">A real conversation: product questions answered, buying intent detected, follow-up sent automatically.</p>
+        <h2 class="section-title">This is what it looks like with zero configuration on your end</h2>
+        <p class="section-sub">A real conversation handled by Kwicker. No flow was built for this. No prompt was written. It just works.</p>
         <ul class="demo-checks">
-          <li>Customer asks about a product. AI replies with price, availability and options</li>
-          <li>Customer goes quiet. AI sends a personalised follow-up 1 hour later</li>
-          <li>Order details collected. Merchant gets notified instantly</li>
-          <li>Merchant reviews everything from the CRM dashboard</li>
+          <li>Customer asks about a product. Kwicker replies with price, availability and options</li>
+          <li>Customer goes quiet. Kwicker sends a personalised follow-up 1 hour later</li>
+          <li>Order details collected. Your team gets notified instantly</li>
+          <li>Everything visible from the dashboard. No chat digging required</li>
         </ul>
-        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary">Book a Demo to See It Live →</a>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary">Book a Demo to See It Live →</a>
       </div>
       <div>
         <img src="assets/CRM screenshot-dashboard.jpg" alt="Kwicker AI CRM Dashboard" class="demo-screenshot" style="border-radius:16px; box-shadow: 0 24px 64px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; max-height: 480px; width: auto; margin: 0 auto;" />
@@ -563,7 +516,7 @@
     <div class="section-header">
       <span class="tag">Pricing</span>
       <h2 class="section-title">Simple, transparent pricing</h2>
-      <p class="section-sub">One flat monthly fee. No per-message charges. No hidden costs. Cancel anytime.</p>
+      <p class="section-sub">One flat monthly fee. No per-message charges, no hidden costs, no technical onboarding required. Cancel anytime.</p>
     </div>
     <div class="pricing-grid">
 
@@ -571,9 +524,8 @@
       <div class="pricing-card">
         <p class="plan-name">Starter</p>
         <p class="plan-price">AED 199<span>/mo</span></p>
-        <p class="plan-convos">Up to 250 conversations / month</p>
         <ul class="plan-features">
-          <li>AI replies 24/7</li>
+          <li>Up to 250 conversations/mo</li>
           <li>AI replies 24/7</li>
           <li>Automated follow-up sequence</li>
           <li>Lead pipeline dashboard</li>
@@ -582,7 +534,8 @@
           <li class="muted">Voice message support</li>
           <li class="muted">Priority support</li>
         </ul>
-        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="plan-btn">Get Started</a>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
       </div>
 
       <!-- GROWTH (POPULAR) -->
@@ -590,8 +543,8 @@
         <div class="popular-badge">Most Popular</div>
         <p class="plan-name">Growth</p>
         <p class="plan-price">AED 349<span>/mo</span></p>
-        <p class="plan-convos">Up to 500 conversations / month</p>
         <ul class="plan-features">
+          <li>Up to 500 conversations/mo</li>
           <li>Everything in Starter</li>
           <li>Voice message support</li>
           <li>Image recognition</li>
@@ -599,15 +552,16 @@
           <li>Hot lead push notifications</li>
           <li>Priority support</li>
         </ul>
-        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="plan-btn">Get Started</a>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
       </div>
 
       <!-- PRO -->
       <div class="pricing-card">
         <p class="plan-name">Pro</p>
         <p class="plan-price">AED 599<span>/mo</span></p>
-        <p class="plan-convos">Up to 1,000 conversations / month</p>
         <ul class="plan-features">
+          <li>Up to 1,000 conversations/mo</li>
           <li>Everything in Growth</li>
           <li>Multiple staff accounts</li>
           <li>Weekly performance reports</li>
@@ -615,7 +569,8 @@
           <li>Dedicated onboarding support</li>
           <li>Guaranteed support response time</li>
         </ul>
-        <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="plan-btn">Get Started</a>
+        <!-- REPLACE: update href to your actual Calendly link -->
+        <a href="https://calendly.com/kwickerai-info/30min" class="plan-btn">Get Started</a>
       </div>
 
     </div>
@@ -628,9 +583,10 @@
      MID-PAGE CTA BAND
 ═══════════════════════════════════════════════════════ -->
 <div class="cta-band">
-  <h2 class="section-title">Your next customer is already typing on WhatsApp.</h2>
-  <p class="section-sub">Are you going to reply in 4 hours, or in 3 seconds?</p>
-  <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--white">Book a Free Demo →</a>
+  <h2 class="section-title">Your team is busy enough.</h2>
+  <p class="section-sub">Let Kwicker handle the inquiries so your team can focus on the ones that are ready to close.</p>
+  <!-- REPLACE: update href to your actual Calendly link -->
+  <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--white">Book a Free Demo →</a>
 </div>
 
 
@@ -645,8 +601,20 @@
     </div>
     <div class="faq-list">
       <div class="faq-item">
+        <p class="faq-q">Do I need to build automations or conversation flows?</p>
+        <p class="faq-a">No. Kwicker doesn't have a flow builder. You describe your business in plain language, and it handles conversations from there. There's nothing to map out, nothing to test, and nothing to maintain.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Do I need any technical knowledge or AI experience?</p>
+        <p class="faq-a">Not at all. If you can brief a new team member, you can set up Kwicker. We handle everything technical on our end. You just tell us about your business.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How is this different from tools like AiSensy or Wati?</p>
+        <p class="faq-a">Those tools are powerful, but they're built for teams with a dedicated tech or operations person who can build and maintain automation flows. Kwicker is built for small teams who just want it to work without the setup overhead. No flows, no prompt writing, live in 24 hours.</p>
+      </div>
+      <div class="faq-item">
         <p class="faq-q">Do I need to change my WhatsApp number?</p>
-        <p class="faq-a">No. We connect Kwicker AI to your existing business WhatsApp number. Your customers keep messaging the same number they already know.</p>
+        <p class="faq-a">No. We connect Kwicker to your existing business WhatsApp number. Your customers keep messaging the same number they already know.</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">Will customers know they're talking to an AI?</p>
@@ -685,9 +653,10 @@
      FINAL CTA BAND
 ═══════════════════════════════════════════════════════ -->
 <div class="cta-band">
-  <h2 class="section-title">Ready to turn WhatsApp into your best salesperson?</h2>
-  <p class="section-sub">Book a free demo and see Kwicker AI reply to a real customer inquiry, live, in front of you.</p>
-  <a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener" class="btn btn--primary" style="margin-right:12px">Book a Free Demo →</a>
+  <h2 class="section-title">See it working before you commit to anything.</h2>
+  <p class="section-sub">Book a free demo and watch Kwicker handle a real inquiry, live, in front of you. No slides, no sales pitch.</p>
+  <!-- REPLACE: update href to your actual Calendly link -->
+  <a href="https://calendly.com/kwickerai-info/30min" class="btn btn--primary" style="margin-right:12px">Book a Free Demo →</a>
 </div>
 
 
@@ -699,7 +668,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <img src="assets/kwicker-logo-footer.png" alt="Kwicker AI" style="height:40px; width:auto; margin-bottom:12px;" />
-        <p>WhatsApp AI that qualifies leads, follows up, and closes sales. Automatically.</p>
+        <p>The WhatsApp tool built for small teams. No setup, no flowcharts, no technical person needed.</p>
       </div>
       <div class="footer-col">
         <h4>Product</h4>
@@ -711,22 +680,31 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
+        <h4>Company</h4>
         <ul>
-          <li><a href="https://calendly.com/kwickerai-info/30min" target="_blank" rel="noopener">Book a Demo</a></li>
-          <li><a href="mailto:info@kwickerai.com">Email Us</a></li>
-          <li><a href="https://wa.me/918891337705" target="_blank" rel="noopener">WhatsApp Us</a></li>
+          <!-- REPLACE: add real links when pages exist -->
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="/privacy/">Privacy Policy</a></li>
+          <!-- REPLACE: update to your actual privacy policy URL -->
+          <li><a href="https://ashiq6921.github.io/kwicker-privacy/">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Kwicker AI. All rights reserved.</span>
+      <!-- REPLACE: add real social links -->
+      <span>
+        <a href="#" style="margin-right:16px">Instagram</a>
+        <a href="#" style="margin-right:16px">LinkedIn</a>
+        <a href="#">WhatsApp</a>
+      </span>
     </div>
   </div>
 </footer>
